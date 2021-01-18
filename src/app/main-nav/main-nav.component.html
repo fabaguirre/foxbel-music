@@ -1,0 +1,45 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <a routerLink="/">
+        <img src="assets/img/foxbel-music.png" class="logo">
+      </a>
+    </mat-toolbar>
+    <h2 class="mat-list-title">{{ library.title }}</h2>
+    <mat-nav-list *ngFor="let item of library.items">      
+      <a mat-list-item [routerLink]="item.route" routerLinkActive="active-list-item" class="mat-list-item-2">{{ item.name }}</a>
+    </mat-nav-list>
+
+    <h2 class="mat-list-title">{{ playlist.title }}</h2>
+    <mat-nav-list *ngFor="let item of playlist.items">      
+      <a mat-list-item [routerLink]="item.route" routerLinkActive="active-list-item" class="mat-list-item-2">{{ item.name }}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: transparent;" (window:resize)="onResize($event)">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <img src="assets/img/foxbel-music-icon.png" class="logo-icon">
+      </button>
+
+      <div class="search-container">
+        <input type="text" placeholder="Buscar álbum o canción" class="search-input" #searchBox>
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+
+      <div class="ml-5" *ngIf="user.visible">
+        <p class="user-text">
+          <mat-icon class="user-icon">account_circle</mat-icon>
+          {{ user.name }}</p>
+      </div>
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+    <div class="main-container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

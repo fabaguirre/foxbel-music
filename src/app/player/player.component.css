@@ -1,0 +1,68 @@
+.player-container {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+
+  height: 85px;
+  width: 100%;
+
+  background-color: #eb5757;
+}
+
+.mat-primary {
+  background-color: transparent;
+  color: white;
+  box-shadow: none;
+}
+
+.icon-display {
+  transform: scale(2.25);
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: auto;
+    height: 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    background: #fbfbfb;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background: #fbfbfb;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fbfbfb;
+    cursor: pointer;
+  }
+
+  .icon-display-small {
+    transform: scale(2);
+  }
+
+  .track-title {
+    color: #fbfbfb;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .album-title {
+    color: #fbfbfb;
+    font-size: 13px;
+    position: relative;
+    bottom: 5px;
+  }
+  

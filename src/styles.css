@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Comfortaa; }
+
+h1, h2{
+    color: #e86060;
+    font-weight: bold;
+}
+
+.mr-5 {
+    margin-right: 30px;
+}
+.ml-5 {
+    margin-left: 30px;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+

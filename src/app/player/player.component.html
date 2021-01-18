@@ -1,0 +1,40 @@
+<div class="player-container">
+  <mat-grid-list cols="11" rowHeight="85px" (window:resize)="onResize($event)">
+    <mat-grid-tile [colspan]="cols.info">
+      <div style="position: absolute; left: 0;">
+        <img [src]="track?.album.cover_medium" height="88px">
+      </div>
+      <div style="position: absolute; left: 110px;">
+        <p class="track-title">
+          {{ track?.title }}
+        </p>
+        <p class="album-title">
+          {{ track?.album.title }}
+        </p>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="cols.play">
+      <div>
+        <button mat-fab color="primary">
+          <mat-icon class="icon-display">skip_previous</mat-icon>
+        </button>
+        <button mat-fab color="primary" (click)="play()">
+          <mat-icon class="icon-display" *ngIf="!isPlaying">play_arrow</mat-icon>
+          <mat-icon class="icon-display" *ngIf="isPlaying">pause_arrow</mat-icon>
+        </button>
+        <button mat-fab color="primary">
+          <mat-icon class="icon-display">skip_next</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="cols.volume">
+      <div class="mr-5" style="position: absolute; right: 0;">
+        <input type="range" min="0" max="100" value="50" step="10" class="slider" (input)="setVolume($event)">
+        <button mat-fab color="primary" (click)="mute()">
+          <mat-icon class="icon-display-small" *ngIf="!isMute">{{ icon_volume }}</mat-icon>
+          <mat-icon class="icon-display-small" *ngIf="isMute">volume_off</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

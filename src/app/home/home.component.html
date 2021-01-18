@@ -1,0 +1,38 @@
+<h1 class="ml-5">Popular</h1>
+<mat-grid-list [cols]="col" rowHeight="300px" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let track of chartTracks">
+    <mat-card class="album-card">
+      <div class="cover" (click)="play(track)">
+        <img [src]="track.album.cover_xl" style="vertical-align:middle" width="100%">
+        <span class="centered"><mat-icon class="play-icon">play_arrow</mat-icon></span>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>library_music</mat-icon>
+          <span>Agregar a playlist</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>queue</mat-icon>
+          <span>Agregar a cola</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>archive</mat-icon>
+          <span>Descargar</span>
+        </button>
+      </mat-menu>
+      <mat-card-content>
+        <mat-card-title>
+          <a href="#" class="album-title">{{ track.title }}</a>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <a href="#" class="album-subtitle">
+            {{ track.artist.name }}
+          </a>
+        </mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
