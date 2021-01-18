@@ -30,16 +30,22 @@ export class PlayerComponent implements OnInit {
     this.sharedService.getTrack().subscribe(
       track => {
         this.track = track
+        this.audio.volume = this.volume;
         
         if(this.track != null){
-          this.audio.src = this.track.preview;
-          this.audio.load();
-          this.audio.volume = this.volume;
-          this.audio.play();
-          this.isPlaying = true;       
+          this.audio.src = this.track.preview
+          this.audio.load()
+          this.audio.play()
+          this.isPlaying = true     
         }
         else{
-          this.getTrack(1109731)
+          this.deezerService.getTrack(1109731).subscribe(
+            data => {
+              this.track = data
+              this.audio.src = this.track.preview;              
+              this.audio.load();
+            }
+          )
         }
       }
     )
@@ -65,12 +71,6 @@ export class PlayerComponent implements OnInit {
       this.cols.play = 3
       this.cols.volume = 4
     }
-  }
-
-  getTrack(id: number) {
-    this.deezerService.getTrack(id).subscribe(
-      data => this.track = data
-    )
   }
 
   mute() {
