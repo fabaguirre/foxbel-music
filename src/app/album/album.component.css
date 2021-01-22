@@ -1,0 +1,29 @@
+mat-cell:nth-child(1),
+mat-header-cell:nth-child(1) {
+  flex: 0 0 30%;
+}
+
+mat-cell:nth-child(5),
+mat-header-cell:nth-child(5) {
+  flex: 0 0 10%;
+}
+
+.back-icon {
+  font-size: 18px;
+}
+
+.album-title {
+  height: 40%;
+  margin: 0;
+  font-size: 3vh;
+}
+
+.album-details {
+  height: 30%;
+  font-size: 2vh;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.table {
+  margin: 35px 0px 150px;
+}

@@ -7,7 +7,7 @@ import { PlayerComponent } from './player/player.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'album', component: AlbumComponent},
+  {path: 'album/:id', component: AlbumComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '404', component: PlayerComponent},
   {path: '**', redirectTo: '/404'},

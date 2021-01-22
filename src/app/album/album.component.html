@@ -1,3 +1,35 @@
-<p>
-  album works!
-</p>
+<h5>
+  <a routerLink="../../"><mat-icon class="back-icon">arrow_back_ios</mat-icon>{{album?.artist.name}} - Álbums </a> / Canciones
+</h5>
+
+<mat-grid-list cols="5">
+  <mat-grid-tile [colspan]=1>
+    <img [src]="album?.cover_medium" width="100%">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=4>
+    <div style="height: 100%; width: 100%; padding-left: 35px;">
+      <h2 class="album-title"> {{album?.title}} </h2>
+      <div class="album-details">
+        {{album?.artist.name}}
+      </div>
+      <div class="album-details">
+        {{album?.release_date | date:'yyyy'}} | {{album?.nb_tracks}} Canciones | {{album?.genres.data[0].name}}
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-table [dataSource]="album?.tracks" class="mat-elevation-z8 table">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+    <mat-cell *matCellDef="let i = index"> {{ i+1}} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="play(element)"> {{ element.title }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
