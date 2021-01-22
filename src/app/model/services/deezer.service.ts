@@ -20,4 +20,8 @@ export class DeezerService {
     return this.http.get<any>(this.proxy + this.url + 'track/' + id);
   }
 
+  findTrackByName(name: string): Observable<any>{
+    return this.http.get<any>(this.proxy + this.url + 'search/track?q=' + name.replace(/\s/g, '-'));
+  }
+
 }
