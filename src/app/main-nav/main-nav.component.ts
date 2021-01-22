@@ -20,7 +20,7 @@ export class MainNavComponent implements OnInit {
 
   @ViewChild('searchBox') searchInput: ElementRef;
   hideResult:boolean;
-  searchResults: Track[]= new Array();
+  searchResults: any[]= new Array();
   
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -111,8 +111,31 @@ export class MainNavComponent implements OnInit {
   }
 
   search(param: string) {
+    this.searchResults = new Array()
+
     this.deezerService.findTrackByName(param).subscribe(
-      data => this.searchResults = data.data
+      data => {
+        let tracks = data.data
+
+        this.deezerService.findAlbumByName(param).subscribe(
+          data => {
+            //sort results
+            let topTracks = tracks.slice(0,7)
+            tracks = tracks.slice(7)
+
+            let albums = data.data
+            let topAlbums = albums.slice(0,7)
+            albums = albums.slice(7)
+
+
+            this.searchResults = this.searchResults.concat(topTracks)
+            this.searchResults = this.searchResults.concat(topAlbums)
+            this.searchResults = this.searchResults.concat(tracks)
+            this.searchResults = this.searchResults.concat(albums)
+          }
+        )
+      }
+
     )
   }
 

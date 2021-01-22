@@ -33,6 +33,8 @@
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option *ngFor="let item of searchResults" (click)="onResultClick(item)">
             {{item.title + " - " + item.artist.name}}
+            <span class="item-type" *ngIf="item.type=='track'">Canción</span>
+            <span class="item-type" *ngIf="item.type=='album'">Álbum</span>
           </mat-option>
         </mat-autocomplete>
       </form>
