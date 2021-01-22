@@ -3,9 +3,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Comfortaa; }
 
-h1, h2{
+h1, h2 {
     color: #e86060;
     font-weight: bold;
+}
+a {
+    color: #e86060;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    text-decoration: none;
 }
 
 .mr-5 {
@@ -19,5 +27,5 @@ h1, h2{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
