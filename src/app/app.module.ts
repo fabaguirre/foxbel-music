@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HomeComponent } from './home/home.component';
 import { PlayerComponent } from './player/player.component';
 import { AlbumComponent } from './album/album.component';
@@ -40,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -76,7 +76,7 @@
   font-size: 16px;
   color: #212121;
   padding: 0 20px;
-  width: 80%;
+  width: 95%;
   font-family: Comfortaa;
   font-weight: 400;
   outline: none;
@@ -92,6 +92,13 @@
   top: 4px;
   right: 30px;
   font-size: 24px;
+}
+
+.search-result {
+  position: fixed;
+  top: 48px;
+  background-color: red;
+  z-index: 2;
 }
 
 .user-text {
