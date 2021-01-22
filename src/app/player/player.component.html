@@ -1,6 +1,6 @@
 <div class="player-container">
   <mat-grid-list cols="11" rowHeight="85px" (window:resize)="onResize($event)">
-    <mat-grid-tile [colspan]="cols.info">
+    <mat-grid-tile [colspan]="cols.info" *ngIf="cols.info != 0">
       <div style="position: absolute; left: 0;">
         <img [src]="track?.album.cover_medium" height="88px">
       </div>
@@ -27,7 +27,7 @@
         </button>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="cols.volume">
+    <mat-grid-tile [colspan]="cols.volume" *ngIf="cols.volume != 0">
       <div class="mr-5" style="position: absolute; right: 0;">
         <input type="range" min="0" max="100" value="50" step="10" class="slider" (input)="setVolume($event)">
         <button mat-fab color="primary" (click)="mute()">
