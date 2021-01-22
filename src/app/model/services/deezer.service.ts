@@ -24,4 +24,8 @@ export class DeezerService {
     return this.http.get<any>(this.proxy + this.url + 'search/track?q=' + name.replace(/\s/g, '-'));
   }
 
+  findAlbumByName(album: string): Observable<any>{
+    return this.http.get<any>(this.proxy + this.url + 'search/album?q=' + album.replace(/\s/g, '-'));
+  }
+
 }
