@@ -46,8 +46,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  play(track: Track){
+  play(track: Track) {
     this.sharedService.loadTrack(track)
+  }
+
+  push(track: Track) {
+    this.sharedService.push(track)
   }
 
 }

@@ -15,14 +15,14 @@
     </mat-grid-tile>
     <mat-grid-tile [colspan]="cols.play">
       <div>
-        <button mat-fab color="primary">
+        <button mat-fab color="primary" (click)="back()">
           <mat-icon class="icon-display">skip_previous</mat-icon>
         </button>
         <button mat-fab color="primary" (click)="play()">
           <mat-icon class="icon-display" *ngIf="!isPlaying">play_arrow</mat-icon>
           <mat-icon class="icon-display" *ngIf="isPlaying">pause_arrow</mat-icon>
         </button>
-        <button mat-fab color="primary">
+        <button mat-fab color="primary" (click)="next()">
           <mat-icon class="icon-display">skip_next</mat-icon>
         </button>
       </div>

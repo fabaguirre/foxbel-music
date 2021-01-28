@@ -8,15 +8,24 @@ import { Track } from '../entities/track';
 export class SharedService {
 
   private trackSelected = new BehaviorSubject<Track>(null);
+  private trackQueue = new BehaviorSubject<Track>(null);
 
   constructor() { }
 
-  loadTrack(track: Track){
+  loadTrack(track: Track) {
     this.trackSelected.next(track)
   }
 
   getTrack(): Observable<Track> {
     return this.trackSelected.asObservable();
+  }
+
+  push(track: Track) {
+    this.trackQueue.next(track)
+  }
+
+  pop(): Observable<Track> {
+    return this.trackQueue.asObservable();
   }
 
 }

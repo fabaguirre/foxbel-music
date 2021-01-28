@@ -20,6 +20,8 @@ export class PlayerComponent implements OnInit {
 
   isPlaying: boolean = false;
   isMute: boolean = false;
+  index: number;
+  playlist: Track[];
   track: Track;
   volume: number = 0.5;
   audio = new Audio();
@@ -27,20 +29,30 @@ export class PlayerComponent implements OnInit {
   constructor(private sharedService: SharedService, private deezerService: DeezerService) { }
 
   ngOnInit() {
+    this.sharedService.pop().subscribe(
+      track => {
+        if(track) {
+          this.playlist.push(track)
+        }
+      }
+    )
     this.sharedService.getTrack().subscribe(
       track => {
+        this.playlist = new Array()
+        this.index = 0
+
         this.track = track
         this.audio.volume = this.volume;
         
         if(this.track != null){
-          this.audio.src = this.track.preview
-          this.audio.load()
-          this.audio.play()
-          this.isPlaying = true     
+          this.playlist.push(track)
+          this.loadAudio(this.track)  
         }
         else{
           this.deezerService.getTrack(1109731).subscribe(
             data => {
+              this.playlist.push(data)
+
               this.track = data
               this.audio.src = this.track.preview;              
               this.audio.load();
@@ -50,6 +62,18 @@ export class PlayerComponent implements OnInit {
       }
     )
     this.changeCols(window.innerWidth)
+
+    this.audio.onended = (ev) => {
+      if(this.index >= this.playlist.length - 1){
+        this.isPlaying = false
+      }
+      else {
+        this.index++
+        this.track = this.playlist[this.index]
+
+        this.loadAudio(this.track)
+      }
+    }
   }
   
   onResize(event) {
@@ -92,9 +116,31 @@ export class PlayerComponent implements OnInit {
     this.audio.volume = volume
   }
 
-  play(){
+  play() {
     this.isPlaying? this.audio.pause() : this.audio.play()    
     this.isPlaying = !this.isPlaying
   }
 
+  back() {
+    if(this.index > 0) {
+      this.index--
+      this.track = this.playlist[this.index]
+      this.loadAudio(this.track)
+    }
+  }
+
+  next() {
+    if(this.index < this.playlist.length - 1) {
+      this.index++
+      this.track = this.playlist[this.index]
+      this.loadAudio(this.track)
+    }
+  }
+
+  loadAudio(track: Track) {
+    this.audio.src = track.preview
+    this.audio.load()
+    this.audio.play()
+    this.isPlaying = true 
+  }
 }
