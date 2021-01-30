@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Track } from '../model/entities/track';
 import { DeezerService } from '../model/services/deezer.service';
 import { SharedService } from '../model/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   chartTracks: Track[];
   constructor(
     private deezerService: DeezerService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,10 @@ export class HomeComponent implements OnInit {
   }
 
   push(track: Track) {
+    this.toastr.success('', 'Se agregó a la cola', {
+      timeOut: 1200,
+      positionClass: 'toast-bottom-right'
+    });
     this.sharedService.push(track)
   }
 
